@@ -1,0 +1,9 @@
+[INFO ] 2018-03-18 19:52:54.505 [main] Application - Starting Application on kiva10442 with PID 19176 (C:\Users\aperea\Volk\Rest\target\classes started by aperea in C:\Users\aperea\Volk\Rest)
+[DEBUG] 2018-03-18 19:52:54.512 [main] Application - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+[INFO ] 2018-03-18 19:52:54.513 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-18 19:52:59.637 [main] Application - Started Application in 6.31 seconds (JVM running for 10.747)
+[DEBUG] 2018-03-18 19:54:21.395 [reactor-http-nio-2] SearchFileService - findAll
+[INFO ] 2018-03-18 19:54:35.040 [main] RestTest - Starting RestTest on kiva10442 with PID 5708 (started by aperea in C:\Users\aperea\Volk\Rest)
+[DEBUG] 2018-03-18 19:54:35.042 [main] RestTest - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+[INFO ] 2018-03-18 19:54:35.042 [main] RestTest - The following profiles are active: local
+[INFO ] 2018-03-18 19:54:40.352 [main] RestTest - Started RestTest in 5.734 seconds (JVM running for 7.144)

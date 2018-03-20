@@ -1,0 +1,6 @@
+[DEBUG] 2018-03-18 19:54:40.556 [main] RestTest - SearchFile(createdBy=SearchUser(name=Test Armando, domainName=TestDomain), size=null, createdDateTime=2018-03-18T19:54:40.555, lastModified=2018-03-18T19:54:40.556, fileName=testfilename, path=testpath, extension=null, server=testserver, share=null)
+[DEBUG] 2018-03-18 19:54:40.912 [reactor-http-nio-2] SearchFileService - create SearchFile(createdBy=SearchUser(name=Test Armando, domainName=TestDomain), size=null, createdDateTime=2018-03-18T19:54:40.555, lastModified=2018-03-18T19:54:40.556, fileName=testfilename, path=testpath, extension=null, server=testserver, share=null)
+[INFO ] 2018-03-18 20:00:39.338 [main] RestTest - Starting RestTest on kiva10442 with PID 18732 (started by aperea in C:\Users\aperea\Volk\Rest)
+[DEBUG] 2018-03-18 20:00:39.339 [main] RestTest - Running with Spring Boot v2.0.0.RELEASE, Spring v5.0.4.RELEASE
+[INFO ] 2018-03-18 20:00:39.339 [main] RestTest - The following profiles are active: local
+[INFO ] 2018-03-18 20:00:44.698 [main] RestTest - Started RestTest in 5.793 seconds (JVM running for 7.226)
