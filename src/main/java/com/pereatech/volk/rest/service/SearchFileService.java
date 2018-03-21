@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,18 +49,29 @@ public class SearchFileService {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public Mono<SearchFile> create(@RequestBody SearchFile resource) {
-		log.debug("create " + resource);
+	public Mono<SearchFile> create(@RequestBody SearchFile searchFile) {
+		log.debug("create " + searchFile);
 
-		SearchUser createdBy = resource.getCreatedBy();
+		SearchUser createdBy = searchFile.getCreatedBy();
 
 		SearchUser foundUser = searchUserRepository
 				.findOneByNameAndDomainName(createdBy.getName(), createdBy.getDomainName()).collectList().block()
 				.stream().findFirst().orElse(null);
-		
-		if (foundUser==null)
-		resource.setCreatedBy(searchUserRepository.save(resource.getCreatedBy()).block());
 
-		return searchFileRepository.save(resource);
+		if (foundUser == null)
+			searchFile.setCreatedBy(searchUserRepository.save(searchFile.getCreatedBy()).block());
+		
+		else
+			searchFile.setCreatedBy(foundUser);
+
+		return searchFileRepository.save(searchFile);
+	}
+	
+	@RequestMapping(value = "/")
+	@ResponseBody
+	public Flux<SearchFile> findByUserId(@RequestParam("userid") String userId){
+		log.debug(userId);
+		
+		return searchFileRepository.findByCreatedBy(searchUserRepository.findById(userId).block());
 	}
 }

@@ -17,4 +17,6 @@ public interface SearchFileRepository extends ReactiveCrudRepository<SearchFile,
 	public Flux<SearchFile> findByFileName(String fileName);
 
 	public Mono<SearchFile> save(Mono<SearchFile> searchFile);
+
+	public Flux<SearchFile> findByCreatedBy(SearchUser createdBy);
 }

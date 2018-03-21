@@ -1,8 +1,5 @@
 package com.pereatech.volk.rest.model;
 
-import java.util.UUID;
-
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,7 +15,7 @@ import lombok.ToString;
 @EqualsAndHashCode(of = { "name", "domainName" })
 public class SearchUser {
 	@Id
-	protected ObjectId id;
+	protected String id;
 	
 	private String name, domainName;
 }

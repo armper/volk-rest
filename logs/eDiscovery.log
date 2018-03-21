@@ -72,3 +72,42 @@
 [INFO ] 2018-03-18 23:45:05.950 [main] Application - Starting Application on kiva10442 with PID 5720 (C:\Users\aperea\Volk\Rest\target\classes started by aperea in C:\Users\aperea\Volk\Rest)
 [INFO ] 2018-03-18 23:45:05.966 [main] Application - The following profiles are active: local
 [INFO ] 2018-03-18 23:45:10.985 [main] Application - Started Application in 5.923 seconds (JVM running for 11.079)
+[INFO ] 2018-03-20 15:13:15.987 [main] DatabaseTest - Starting DatabaseTest on Fred with PID 18148 (started by armando in E:\Volk\rest)
+[INFO ] 2018-03-20 15:13:15.993 [main] DatabaseTest - The following profiles are active: local
+[INFO ] 2018-03-20 15:13:35.437 [main] DatabaseTest - Started DatabaseTest in 19.62 seconds (JVM running for 20.384)
+[INFO ] 2018-03-20 15:13:35.713 [main] RestTest - Starting RestTest on Fred with PID 18148 (started by armando in E:\Volk\rest)
+[INFO ] 2018-03-20 15:13:35.714 [main] RestTest - The following profiles are active: local
+[INFO ] 2018-03-20 15:13:36.860 [main] RestTest - Started RestTest in 1.192 seconds (JVM running for 21.808)
+[INFO ] 2018-03-20 15:14:07.996 [main] Application - Starting Application on Fred with PID 10500 (E:\Volk\rest\target\classes started by armando in E:\Volk\rest)
+[INFO ] 2018-03-20 15:14:08.004 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-20 15:14:11.565 [main] Application - Started Application in 4.14 seconds (JVM running for 8.935)
+[INFO ] 2018-03-20 15:17:20.030 [main] Application - Starting Application on Fred with PID 7284 (E:\Volk\rest\target\classes started by armando in E:\Volk\rest)
+[INFO ] 2018-03-20 15:17:20.039 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-20 15:17:23.033 [main] Application - Started Application in 3.353 seconds (JVM running for 5.752)
+[INFO ] 2018-03-20 15:22:03.664 [main] Application - Starting Application on Fred with PID 18184 (E:\Volk\rest\target\classes started by armando in E:\Volk\rest)
+[INFO ] 2018-03-20 15:22:03.667 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-20 15:22:06.174 [main] Application - Started Application in 2.82 seconds (JVM running for 5.149)
+[INFO ] 2018-03-20 16:24:24.335 [main] Application - Starting Application on Fred with PID 16888 (E:\Volk\rest\target\classes started by armando in E:\Volk\rest)
+[INFO ] 2018-03-20 16:24:24.337 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-20 16:24:27.101 [main] Application - Started Application in 3.069 seconds (JVM running for 5.404)
+[INFO ] 2018-03-20 16:25:31.211 [main] Application - Starting Application on Fred with PID 16144 (E:\Volk\rest\target\classes started by armando in E:\Volk\rest)
+[INFO ] 2018-03-20 16:25:31.214 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-20 16:25:33.859 [main] Application - Started Application in 2.993 seconds (JVM running for 5.342)
+[INFO ] 2018-03-20 16:26:35.574 [main] RestTest - Starting RestTest on Fred with PID 2696 (started by armando in E:\Volk\rest)
+[INFO ] 2018-03-20 16:26:35.575 [main] RestTest - The following profiles are active: local
+[INFO ] 2018-03-20 16:26:38.388 [main] RestTest - Started RestTest in 2.991 seconds (JVM running for 3.888)
+[INFO ] 2018-03-20 16:27:39.050 [main] RestTest - Starting RestTest on Fred with PID 10556 (started by armando in E:\Volk\rest)
+[INFO ] 2018-03-20 16:27:39.051 [main] RestTest - The following profiles are active: local
+[INFO ] 2018-03-20 16:27:41.904 [main] RestTest - Started RestTest in 3.055 seconds (JVM running for 3.829)
+[INFO ] 2018-03-20 16:29:15.676 [main] RestTest - Starting RestTest on Fred with PID 17016 (started by armando in E:\Volk\rest)
+[INFO ] 2018-03-20 16:29:15.678 [main] RestTest - The following profiles are active: local
+[INFO ] 2018-03-20 16:29:18.486 [main] RestTest - Started RestTest in 2.993 seconds (JVM running for 3.736)
+[INFO ] 2018-03-20 16:29:24.724 [main] Application - Starting Application on Fred with PID 8980 (E:\Volk\rest\target\classes started by armando in E:\Volk\rest)
+[INFO ] 2018-03-20 16:29:24.727 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-20 16:29:27.416 [main] Application - Started Application in 3.005 seconds (JVM running for 5.634)
+[INFO ] 2018-03-20 16:45:58.127 [main] Application - Starting Application on Fred with PID 18352 (E:\Volk\rest\target\classes started by armando in E:\Volk\rest)
+[INFO ] 2018-03-20 16:45:58.129 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-20 16:46:00.787 [main] Application - Started Application in 2.971 seconds (JVM running for 5.288)
+[INFO ] 2018-03-20 18:48:58.036 [main] Application - Starting Application on Fred with PID 4616 (E:\Volk\rest\target\classes started by armando in E:\Volk\rest)
+[INFO ] 2018-03-20 18:48:58.039 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-20 18:49:01.415 [main] Application - Started Application in 3.702 seconds (JVM running for 6.071)

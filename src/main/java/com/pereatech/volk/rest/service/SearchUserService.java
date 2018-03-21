@@ -1,5 +1,8 @@
 package com.pereatech.volk.rest.service;
 
+import java.math.BigInteger;
+import java.util.UUID;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,7 +31,7 @@ public class SearchUserService {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public Mono<SearchUser> findOne(@PathVariable("id") ObjectId id) {
+	public Mono<SearchUser> findOne(@PathVariable("id") String id) {
 		return searchUserRepository.findById(id);
 	}
 	
@@ -41,6 +44,6 @@ public class SearchUserService {
 	@ResponseBody
 	public Flux<SearchUser> findByName(@RequestParam("name") String name){
 		log.debug(name);
-		return searchUserRepository.findByNameStartsWith(name);
+		return searchUserRepository.findByNameStartsWithIgnoringCase(name);
 	}
 }

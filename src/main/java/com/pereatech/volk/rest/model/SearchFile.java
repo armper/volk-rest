@@ -1,6 +1,8 @@
 package com.pereatech.volk.rest.model;
 
 
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
@@ -11,8 +13,6 @@ import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
-import org.bson.types.ObjectId;
-
 @Data
 @RequiredArgsConstructor
 @Document
@@ -21,8 +21,9 @@ import org.bson.types.ObjectId;
 public class SearchFile {
 
 	@Id
-	protected ObjectId id;
+	protected String id;
 	
+	@Indexed
 	protected SearchUser createdBy;
 
 	protected Long size;

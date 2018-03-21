@@ -1,12 +1,5 @@
-[DEBUG] 2018-03-19 21:33:32.404 [reactor-http-nio-4] SearchUserService - Fr
-[DEBUG] 2018-03-19 21:33:32.795 [reactor-http-nio-4] SearchUserService - F
-[DEBUG] 2018-03-19 21:33:34.195 [reactor-http-nio-4] SearchUserService - 
-[DEBUG] 2018-03-19 21:33:35.298 [reactor-http-nio-4] SearchUserService - F
-[DEBUG] 2018-03-19 21:33:36.665 [reactor-http-nio-4] SearchUserService - Fr
-[DEBUG] 2018-03-19 21:33:37.935 [reactor-http-nio-4] SearchUserService - Fre
-[DEBUG] 2018-03-19 21:33:39.367 [reactor-http-nio-4] SearchUserService - Fred
-[DEBUG] 2018-03-19 21:33:43.119 [reactor-http-nio-1] SearchUserService - Fredd
-[DEBUG] 2018-03-19 21:33:46.009 [reactor-http-nio-1] SearchUserService - 
-[DEBUG] 2018-03-19 21:33:46.541 [reactor-http-nio-1] SearchUserService - f
-[DEBUG] 2018-03-19 21:33:50.994 [reactor-http-nio-1] SearchUserService - F
-[DEBUG] 2018-03-19 21:33:56.107 [reactor-http-nio-2] SearchUserService - Fr
+[DEBUG] 2018-03-20 19:06:00.300 [reactor-http-nio-2] SearchFileService - create SearchFile(id=null, createdBy=SearchUser(id=null, name=armando, domainName=Fred), size=32256, createdDateTime=null, lastModified=2004-10-25T12:10:14, fileName=Rockall v4.0 Tool EULA 101204.doc, path=\\FRED\myshare2\Rockall v4.0 Tool EULA 101204.doc, extension=doc, server=FRED, share=myshare2)
+[DEBUG] 2018-03-20 19:06:00.337 [reactor-http-nio-2] SearchFileService - create SearchFile(id=null, createdBy=SearchUser(id=null, name=armando, domainName=Fred), size=13225, createdDateTime=null, lastModified=2018-02-05T11:21:55.770, fileName=testabchi.xlsx, path=\\FRED\myshare2\testabchi.xlsx, extension=xlsx, server=FRED, share=myshare2)
+[DEBUG] 2018-03-20 19:06:42.140 [reactor-http-nio-1] SearchUserService - ar
+[DEBUG] 2018-03-20 19:06:43.053 [reactor-http-nio-1] SearchFileService - 5ab18fe8e6a45b1208acfd62
+[DEBUG] 2018-03-20 19:06:59.815 [reactor-http-nio-5] SearchFileService - findAll
