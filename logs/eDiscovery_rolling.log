@@ -1,5 +1,6 @@
-[DEBUG] 2018-03-20 19:06:00.300 [reactor-http-nio-2] SearchFileService - create SearchFile(id=null, createdBy=SearchUser(id=null, name=armando, domainName=Fred), size=32256, createdDateTime=null, lastModified=2004-10-25T12:10:14, fileName=Rockall v4.0 Tool EULA 101204.doc, path=\\FRED\myshare2\Rockall v4.0 Tool EULA 101204.doc, extension=doc, server=FRED, share=myshare2)
-[DEBUG] 2018-03-20 19:06:00.337 [reactor-http-nio-2] SearchFileService - create SearchFile(id=null, createdBy=SearchUser(id=null, name=armando, domainName=Fred), size=13225, createdDateTime=null, lastModified=2018-02-05T11:21:55.770, fileName=testabchi.xlsx, path=\\FRED\myshare2\testabchi.xlsx, extension=xlsx, server=FRED, share=myshare2)
-[DEBUG] 2018-03-20 19:06:42.140 [reactor-http-nio-1] SearchUserService - ar
-[DEBUG] 2018-03-20 19:06:43.053 [reactor-http-nio-1] SearchFileService - 5ab18fe8e6a45b1208acfd62
-[DEBUG] 2018-03-20 19:06:59.815 [reactor-http-nio-5] SearchFileService - findAll
+[DEBUG] 2018-03-21 18:12:58.558 [reactor-http-nio-5] SearchFileService - create SearchFile(id=null, createdBy=SearchUser(id=null, name=null, domainName=null), size=87552, createdDateTime=null, lastModified=2018-02-13T11:39:50.698, fileName=yo.ppt, path=\\cscgsxaus1v15\public\yo.ppt, extension=ppt, server=cscgsxaus1v15, share=public)
+[DEBUG] 2018-03-21 18:13:10.863 [reactor-http-nio-6] SearchFileService - findAll
+[DEBUG] 2018-03-21 18:13:25.334 [reactor-http-nio-7] SearchUserService - armando
+[DEBUG] 2018-03-21 18:13:27.185 [reactor-http-nio-7] SearchUserService - a
+[DEBUG] 2018-03-21 18:13:28.694 [reactor-http-nio-7] SearchUserService - 
+[DEBUG] 2018-03-21 18:13:31.154 [reactor-http-nio-7] SearchUserService - fr

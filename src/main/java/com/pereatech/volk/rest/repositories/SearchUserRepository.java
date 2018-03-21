@@ -1,9 +1,5 @@
 package com.pereatech.volk.rest.repositories;
 
-import java.math.BigInteger;
-import java.util.UUID;
-
-import org.bson.types.ObjectId;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
 import com.pereatech.volk.rest.model.SearchUser;

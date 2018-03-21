@@ -1,8 +1,5 @@
 package com.pereatech.volk.rest.repositories;
 
-import java.util.UUID;
-
-import org.bson.types.ObjectId;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
 import com.pereatech.volk.rest.model.SearchFile;
@@ -12,7 +9,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
-public interface SearchFileRepository extends ReactiveCrudRepository<SearchFile, ObjectId> {
+public interface SearchFileRepository extends ReactiveCrudRepository<SearchFile, String> {
 	
 	public Flux<SearchFile> findByFileName(String fileName);
 

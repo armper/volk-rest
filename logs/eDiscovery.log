@@ -111,3 +111,18 @@
 [INFO ] 2018-03-20 18:48:58.036 [main] Application - Starting Application on Fred with PID 4616 (E:\Volk\rest\target\classes started by armando in E:\Volk\rest)
 [INFO ] 2018-03-20 18:48:58.039 [main] Application - The following profiles are active: local
 [INFO ] 2018-03-20 18:49:01.415 [main] Application - Started Application in 3.702 seconds (JVM running for 6.071)
+[INFO ] 2018-03-21 11:43:35.938 [main] DatabaseTest - Starting DatabaseTest on Fred with PID 21484 (started by armando in E:\Volk\rest)
+[INFO ] 2018-03-21 11:43:35.943 [main] DatabaseTest - The following profiles are active: local
+[INFO ] 2018-03-21 11:43:40.163 [main] DatabaseTest - Started DatabaseTest in 4.401 seconds (JVM running for 5.26)
+[INFO ] 2018-03-21 11:43:40.361 [main] RestTest - Starting RestTest on Fred with PID 21484 (started by armando in E:\Volk\rest)
+[INFO ] 2018-03-21 11:43:40.361 [main] RestTest - The following profiles are active: local
+[INFO ] 2018-03-21 11:43:41.517 [main] RestTest - Started RestTest in 1.182 seconds (JVM running for 6.615)
+[INFO ] 2018-03-21 11:44:32.420 [main] Application - Starting Application on Fred with PID 15180 (E:\Volk\rest\target\classes started by armando in E:\Volk\rest)
+[INFO ] 2018-03-21 11:44:32.428 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-21 11:44:35.937 [main] Application - Started Application in 3.894 seconds (JVM running for 7.501)
+[INFO ] 2018-03-21 18:11:17.898 [main] Application - Starting Application on Fred with PID 21784 (E:\Volk\rest\target\classes started by armando in E:\Volk\rest)
+[INFO ] 2018-03-21 18:11:17.902 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-21 18:11:22.000 [main] Application - Started Application in 4.586 seconds (JVM running for 8.51)
+[INFO ] 2018-03-21 18:12:26.877 [main] Application - Starting Application on Fred with PID 24688 (E:\Volk\rest\target\classes started by armando in E:\Volk\rest)
+[INFO ] 2018-03-21 18:12:26.885 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-21 18:12:29.849 [main] Application - Started Application in 3.364 seconds (JVM running for 5.856)

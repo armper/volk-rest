@@ -37,7 +37,7 @@ public class SearchFileService {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public Mono<SearchFile> findOne(@PathVariable("id") ObjectId id) {
+	public Mono<SearchFile> findOne(@PathVariable("id") String id) {
 		return searchFileRepository.findById(id);
 	}
 
