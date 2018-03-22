@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,6 +42,7 @@ public class SearchFileService {
 		return searchFileRepository.findById(id);
 	}
 
+	@Transactional(readOnly=true)
 	@RequestMapping("/findall")
 	public Flux<SearchFile> findAll() {
 		log.debug("findAll");
