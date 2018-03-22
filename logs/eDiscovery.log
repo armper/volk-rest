@@ -183,3 +183,12 @@
 [INFO ] 2018-03-21 22:15:47.896 [main] Application - Starting Application on kiva10442 with PID 10084 (C:\Users\aperea\Volk\Rest\target\classes started by aperea in C:\Users\aperea\Volk\Rest)
 [INFO ] 2018-03-21 22:15:47.903 [main] Application - The following profiles are active: local
 [INFO ] 2018-03-21 22:15:53.243 [main] Application - Started Application in 6.037 seconds (JVM running for 10.285)
+[INFO ] 2018-03-22 15:45:22.315 [main] DatabaseTest - Starting DatabaseTest on Fred with PID 10172 (started by armando in E:\Volk\rest)
+[INFO ] 2018-03-22 15:45:22.316 [main] DatabaseTest - The following profiles are active: local
+[INFO ] 2018-03-22 15:45:27.949 [main] DatabaseTest - Started DatabaseTest in 5.822 seconds (JVM running for 6.829)
+[INFO ] 2018-03-22 15:45:34.525 [main] RestTest - Starting RestTest on Fred with PID 10172 (started by armando in E:\Volk\rest)
+[INFO ] 2018-03-22 15:45:34.526 [main] RestTest - The following profiles are active: local
+[INFO ] 2018-03-22 15:45:35.845 [main] RestTest - Started RestTest in 1.339 seconds (JVM running for 14.725)
+[INFO ] 2018-03-22 15:46:59.456 [main] Application - Starting Application on Fred with PID 21360 (E:\Volk\rest\target\classes started by armando in E:\Volk\rest)
+[INFO ] 2018-03-22 15:46:59.459 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-22 15:47:03.450 [main] Application - Started Application in 4.696 seconds (JVM running for 7.782)

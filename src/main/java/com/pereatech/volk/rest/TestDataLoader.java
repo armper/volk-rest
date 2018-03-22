@@ -48,7 +48,7 @@ public class TestDataLoader implements CommandLineRunner {
 				searchFile = new SearchFile();
 				searchFile.setFileName(faker.file().fileName());
 				searchFile.setExtension(faker.file().extension());
-				searchFile.setPath(faker.file().fileName(faker.gameOfThrones().city(), searchFile.getFileName(),
+				searchFile.setPath("\\\\"+faker.file().fileName(faker.gameOfThrones().city(), searchFile.getFileName(),
 						searchFile.getExtension(), "\\"));
 				searchFile.setCreatedDateTime(LocalDateTime.now());
 				searchFile.setServer(faker.gameOfThrones().dragon());
