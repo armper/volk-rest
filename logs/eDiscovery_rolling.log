@@ -1,9 +1,2 @@
-[DEBUG] 2018-03-24 11:31:17.677 [reactor-http-nio-6] SearchUserService - 
-[DEBUG] 2018-03-24 11:32:22.464 [reactor-http-nio-7] SearchUserService - p
-[DEBUG] 2018-03-24 11:32:23.034 [reactor-http-nio-8] SearchUserService - pa
-[DEBUG] 2018-03-24 11:32:24.461 [reactor-http-nio-1] SearchUserService - pan
-[DEBUG] 2018-03-24 11:32:29.692 [reactor-http-nio-1] SearchUserService - panda
-[DEBUG] 2018-03-24 11:32:34.787 [reactor-http-nio-1] SearchUserService - 
-[DEBUG] 2018-03-24 11:32:56.741 [reactor-http-nio-3] SearchUserService - bo
-[DEBUG] 2018-03-24 11:32:56.741 [reactor-http-nio-2] SearchUserService - b
-[DEBUG] 2018-03-24 11:33:04.983 [reactor-http-nio-3] SearchUserService - 
+[DEBUG] 2018-03-24 18:13:26.699 [main] TestDataLoader - done
+[DEBUG] 2018-03-24 18:13:35.248 [reactor-http-nio-2] SearchUserService - d

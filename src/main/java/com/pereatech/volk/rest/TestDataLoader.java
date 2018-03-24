@@ -30,13 +30,13 @@ public class TestDataLoader implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		for (int i = 0; i < 2000; i++) {
+		for (int i = 0; i < 50; i++) {
 			SearchUser createdBy = new SearchUser();
 			createdBy.setName(faker.name().fullName());
 			createdBy.setDomainName(faker.ancient().god());
 			createdBy.setSearchFiles(new ArrayList<>());
 
-			for (int j = 0; j < faker.number().numberBetween(10000, 80000); j++) {
+			for (int j = 0; j < faker.number().numberBetween(10, 100); j++) {
 				SearchFile searchFile = new SearchFile();
 				searchFile.setFileName(faker.file().fileName());
 				searchFile.setExtension(faker.file().extension());
@@ -46,7 +46,7 @@ public class TestDataLoader implements CommandLineRunner {
 				searchFile.setServer(faker.gameOfThrones().dragon());
 				searchFile.setLastModified(LocalDateTime.now());
 
-				// searchFile = searchFileRepository.save(searchFile).block();
+				 searchFile = searchFileRepository.save(searchFile).block();
 				createdBy.getSearchFiles().add(searchFile);
 			}
 
