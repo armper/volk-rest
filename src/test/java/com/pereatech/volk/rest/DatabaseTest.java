@@ -51,7 +51,6 @@ public class DatabaseTest {
 		searchFile.setPath(faker.file().fileName(faker.gameOfThrones().city(), searchFile.getFileName(), searchFile.getExtension(), "\\"));
 		searchFile.setCreatedDateTime(LocalDateTime.now());
 		searchFile.setServer(faker.gameOfThrones().dragon());
-		searchFile.setCreatedBy(createdBy);
 		searchFile.setLastModified(LocalDateTime.now());
 		
 		searchFile = searchFileRepository.save(searchFile).block();

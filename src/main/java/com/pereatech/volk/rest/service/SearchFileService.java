@@ -54,26 +54,7 @@ public class SearchFileService {
 	public Mono<SearchFile> create(@RequestBody SearchFile searchFile) {
 		log.debug("create " + searchFile);
 
-		SearchUser createdBy = searchFile.getCreatedBy();
-
-		SearchUser foundUser = searchUserRepository
-				.findOneByNameAndDomainName(createdBy.getName(), createdBy.getDomainName()).collectList().block()
-				.stream().findFirst().orElse(null);
-
-		if (foundUser == null)
-			searchFile.setCreatedBy(searchUserRepository.save(searchFile.getCreatedBy()).block());
-		
-		else
-			searchFile.setCreatedBy(foundUser);
-
 		return searchFileRepository.save(searchFile);
 	}
 	
-	@RequestMapping(value = "/")
-	@ResponseBody
-	public Flux<SearchFile> findByUserId(@RequestParam("userid") String userId){
-		log.debug(userId);
-		
-		return searchFileRepository.findByCreatedBy(searchUserRepository.findById(userId).block());
-	}
 }

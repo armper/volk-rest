@@ -23,9 +23,6 @@ public class SearchFile {
 	@Id
 	protected String id;
 	
-	@Indexed
-	protected SearchUser createdBy;
-
 	protected Long size;
 	
 	protected LocalDateTime createdDateTime, lastModified;
