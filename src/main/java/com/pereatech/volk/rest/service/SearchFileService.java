@@ -33,9 +33,6 @@ public class SearchFileService {
 	@Autowired
 	private SearchFileRepository searchFileRepository;
 
-	@Autowired
-	private SearchUserRepository searchUserRepository;
-
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public Mono<SearchFile> findOne(@PathVariable("id") String id) {

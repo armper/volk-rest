@@ -1,9 +1,11 @@
 package com.pereatech.volk.rest.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,8 +20,9 @@ import lombok.ToString;
 public class SearchUser {
 	@Id
 	protected String id;
-	
+
 	private String name, domainName;
-	
-	private List<SearchFile> searchFiles;
+
+	private List<SearchFile> searchFiles = new ArrayList<>();
+
 }

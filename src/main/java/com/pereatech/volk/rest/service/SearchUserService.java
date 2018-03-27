@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pereatech.volk.rest.model.SearchFile;
 import com.pereatech.volk.rest.model.SearchUser;
+import com.pereatech.volk.rest.repositories.SearchFileRepository;
 import com.pereatech.volk.rest.repositories.SearchUserRepository;
 
 import lombok.extern.log4j.Log4j2;
@@ -28,6 +30,9 @@ public class SearchUserService {
 	@Autowired
 	private SearchUserRepository searchUserRepository;
 
+	@Autowired
+	private SearchFileRepository searchFileRepository;
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public Mono<SearchUser> findOne(@PathVariable("id") String id) {
@@ -42,23 +47,32 @@ public class SearchUserService {
 	@RequestMapping(value = "/")
 	@ResponseBody
 	public Flux<SearchUser> findByName(@RequestParam("name") String name) {
-		log.debug(name);
 		return searchUserRepository.findByNameStartsWithIgnoringCase(name);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<String> create(@RequestBody SearchUser searchUser) {
-		log.debug("create " + searchUser);
-		searchUserRepository.save(searchUser);
+		SearchUser returnSearchUser = searchUserRepository
+				.findOneByNameAndDomainName(searchUser.getName(), searchUser.getDomainName()).collectList().block()
+				.stream().findFirst().orElse(searchUser);
+
+		returnSearchUser.getSearchFiles().add(searchUser.getSearchFiles().stream().findFirst().orElse(null));
+
+		returnSearchUser = searchUserRepository.save(returnSearchUser).block();
+		log.debug("derp" + returnSearchUser);
+
 		return ResponseEntity.ok("resource saved");
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<String> update(@RequestBody SearchUser searchUser) {
-		log.debug("update " + searchUser);
+		searchUser.setSearchFiles(searchFileRepository.saveAll(searchUser.getSearchFiles()).collectList().block());
+		log.debug("derp" + searchUser);
+		searchUser.getSearchFiles().stream().forEach(s -> log.debug(s));
 		searchUserRepository.save(searchUser);
+
 		return ResponseEntity.ok("resource saved");
 	}
 }
