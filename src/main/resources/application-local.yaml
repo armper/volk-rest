@@ -1,4 +1,4 @@
 spring:
   data:
     mongodb:
-      database: volkov
+      database: volk

@@ -295,3 +295,21 @@
 [INFO ] 2018-03-27 18:16:06.636 [main] Application - Starting Application on Fred with PID 10244 (E:\Volk\rest\target\classes started by armando in E:\Volk\rest)
 [INFO ] 2018-03-27 18:16:06.643 [main] Application - The following profiles are active: local
 [INFO ] 2018-03-27 18:16:09.185 [main] Application - Started Application in 2.849 seconds (JVM running for 5.232)
+[INFO ] 2018-03-27 19:22:49.888 [main] Application - Starting Application on kiva10442 with PID 12036 (C:\Users\aperea\Documents\volk\rest\target\classes started by aperea in C:\Users\aperea\Documents\volk\rest)
+[INFO ] 2018-03-27 19:22:49.894 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-27 19:22:55.661 [main] Application - Started Application in 8.868 seconds (JVM running for 17.867)
+[INFO ] 2018-03-27 21:43:06.775 [main] Application - Starting Application on kiva10442 with PID 15676 (C:\Users\aperea\Documents\volk\rest\target\classes started by aperea in C:\Users\aperea\Documents\volk\rest)
+[INFO ] 2018-03-27 21:43:06.780 [main] Application - The following profiles are active: local
+[INFO ] 2018-03-27 21:43:11.827 [main] Application - Started Application in 5.667 seconds (JVM running for 9.111)
+[INFO ] 2018-05-12 21:00:21.061 [main] Application - Starting Application on kiva10442 with PID 1780 (C:\Users\aperea\Documents\volk\rest\target\classes started by aperea in C:\Users\aperea\Documents\volk\rest)
+[INFO ] 2018-05-12 21:00:21.072 [main] Application - The following profiles are active: local
+[INFO ] 2018-05-12 21:00:29.399 [main] Application - Started Application in 9.999 seconds (JVM running for 17.018)
+[INFO ] 2018-05-13 20:45:16.252 [main] Application - Starting Application on kiva10442 with PID 3976 (C:\Users\aperea\Documents\volk\rest\target\classes started by aperea in C:\Users\aperea\Documents\volk\rest)
+[INFO ] 2018-05-13 20:45:16.258 [main] Application - The following profiles are active: local
+[INFO ] 2018-05-13 20:45:21.841 [main] Application - Started Application in 6.395 seconds (JVM running for 11.093)
+[INFO ] 2018-05-13 20:50:32.845 [main] Application - Starting Application on kiva10442 with PID 10104 (C:\Users\aperea\Documents\volk\rest\target\classes started by aperea in C:\Users\aperea\Documents\volk\rest)
+[INFO ] 2018-05-13 20:50:32.877 [main] Application - The following profiles are active: local
+[INFO ] 2018-05-13 20:50:37.614 [main] Application - Started Application in 5.341 seconds (JVM running for 8.581)
+[INFO ] 2018-05-13 21:26:12.911 [main] Application - Starting Application on kiva10442 with PID 9168 (C:\Users\aperea\Documents\volk\rest\target\classes started by aperea in C:\Users\aperea\Documents\volk\rest)
+[INFO ] 2018-05-13 21:26:12.933 [main] Application - The following profiles are active: local
+[INFO ] 2018-05-13 21:26:17.718 [main] Application - Started Application in 5.339 seconds (JVM running for 8.369)
