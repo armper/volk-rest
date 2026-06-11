@@ -58,6 +58,14 @@ class RestTest {
 		searchFile.setIndexerReadable(true);
 		searchFile.setFileOwner(System.getProperty("user.name"));
 		searchFile.setOwnerReadable(true);
+		searchFile.setSourceId("source-test");
+		searchFile.setSourceName("Policy library");
+		searchFile.setSourceType("SHARED_DRIVE");
+		searchFile.setSourceRoot("/sources/policies");
+		searchFile.setRelativePath("annual/" + searchFile.getFileName());
+		searchFile.setContentOwner("Records team");
+		searchFile.setOwnershipBasis("SOURCE_PROFILE");
+		searchFile.setDepartment("Compliance");
 	}
 
 	@AfterEach
@@ -76,6 +84,9 @@ class RestTest {
 				.accept(MediaType.APPLICATION_JSON).body(Mono.just(searchFile), SearchFile.class).exchange()
 				.expectStatus().isOk().expectBody()
 				.jsonPath("$.fileName").isEqualTo(searchFile.getFileName())
+				.jsonPath("$.sourceName").isEqualTo("Policy library")
+				.jsonPath("$.contentOwner").isEqualTo("Records team")
+				.jsonPath("$.department").isEqualTo("Compliance")
 				.jsonPath("$.id").isNotEmpty();
 	}
 

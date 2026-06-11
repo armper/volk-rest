@@ -45,6 +45,12 @@ public class SearchFile {
 
 	protected String author, keywords, comments, contentType;
 
+	/** Human and system provenance inherited from the watched source. */
+	protected String sourceId, sourceType, sourceRoot, relativePath, ownershipBasis, accessContextRoot,
+			sourceAccessSummary;
+
+	protected String sourceName, contentOwner, department;
+
 	/** Filesystem access metadata captured by the sniffer. */
 	protected String fileOwner, fileGroup, posixPermissions, accessControlSource, indexerUser;
 
