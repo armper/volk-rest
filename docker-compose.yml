@@ -1,3 +1,8 @@
+# `docker compose up -d`                 -> MongoDB only (local dev / tests)
+# `docker compose --profile full up -d`  -> the whole Volk stack
+#
+# The "full" profile expects volk-sniffer and volk-ui to be cloned as
+# sibling directories of this repo.
 services:
   mongo:
     image: mongo:7
@@ -6,5 +11,40 @@ services:
     volumes:
       - mongo-data:/data/db
 
+  rest:
+    profiles: ["full"]
+    build: .
+    ports:
+      - "8091:8091"
+    environment:
+      SPRING_DATA_MONGODB_HOST: mongo
+      SERVER_ADDRESS: 0.0.0.0
+    depends_on:
+      - mongo
+
+  sniffer:
+    profiles: ["full"]
+    build: ../volk-sniffer
+    environment:
+      VOLK_SNIFFER_DIRECTORIES: /inbox
+      VOLK_API_BASE_URL: http://rest:8091
+      SERVER_ADDRESS: 0.0.0.0
+    ports:
+      - "8092:8092"
+    volumes:
+      - ${VOLK_INBOX:-/tmp/volk-inbox}:/inbox
+      - sniffer-data:/app/data
+    depends_on:
+      - rest
+
+  ui:
+    profiles: ["full"]
+    build: ../volk-ui
+    ports:
+      - "4200:80"
+    depends_on:
+      - rest
+
 volumes:
   mongo-data:
+  sniffer-data:
