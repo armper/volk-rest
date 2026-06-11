@@ -1,69 +1,68 @@
 package com.pereatech.volk.rest;
-import static org.assertj.core.api.Assertions.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import com.github.javafaker.Faker;
 import com.pereatech.volk.rest.model.SearchFile;
 import com.pereatech.volk.rest.model.SearchUser;
 import com.pereatech.volk.rest.repositories.SearchFileRepository;
 import com.pereatech.volk.rest.repositories.SearchUserRepository;
 
-import lombok.extern.log4j.Log4j2;
-import reactor.core.publisher.Flux;
+import lombok.extern.slf4j.Slf4j;
+import net.datafaker.Faker;
 
-@Log4j2
-@RunWith(SpringRunner.class)
+/**
+ * Integration test — requires a MongoDB instance on localhost:27017
+ * (see docker-compose.yml).
+ */
+@Slf4j
 @SpringBootTest
-public class DatabaseTest {
+class DatabaseTest {
+
 	@Autowired
 	SearchFileRepository searchFileRepository;
+
+	@Autowired
+	private SearchUserRepository searchUserRepository;
 
 	private SearchFile searchFile;
 
 	private SearchUser createdBy;
 
-	private Faker faker=new Faker();
+	private final Faker faker = new Faker();
 
-	@Autowired
-	private SearchUserRepository searchUserRepository;
-
-	@Before
-	public void setUp() {
-
+	@BeforeEach
+	void setUp() {
 		createdBy = new SearchUser();
-
 		createdBy.setName(faker.name().fullName());
 		createdBy.setDomainName(faker.ancient().god());
-		
 		createdBy = searchUserRepository.save(createdBy).block();
 
 		searchFile = new SearchFile();
 		searchFile.setFileName(faker.file().fileName());
 		searchFile.setExtension(faker.file().extension());
-		searchFile.setPath(faker.file().fileName(faker.gameOfThrones().city(), searchFile.getFileName(), searchFile.getExtension(), "\\"));
+		searchFile.setPath(faker.file().fileName(faker.gameOfThrones().city(), searchFile.getFileName(),
+				searchFile.getExtension(), "\\"));
 		searchFile.setCreatedDateTime(LocalDateTime.now());
 		searchFile.setServer(faker.gameOfThrones().dragon());
 		searchFile.setLastModified(LocalDateTime.now());
-		
 		searchFile = searchFileRepository.save(searchFile).block();
-		
-		log.debug(searchFile);
+
+		log.debug("saved {}", searchFile);
 	}
 
 	@Test
-	public void testLoad() {
-		Flux<SearchFile> found = searchFileRepository.findByFileName(searchFile.getFileName());
-		found.collectList().block().stream().forEach(a->log.debug(a));        
-		assertThat(found).isNotNull();
+	void findByFileNameReturnsSavedFile() {
+		List<SearchFile> found = searchFileRepository.findByFileName(searchFile.getFileName()).collectList().block();
 
+		assertThat(found).isNotEmpty();
+		assertThat(found).allMatch(f -> f.getFileName().equals(searchFile.getFileName()));
 	}
-
 }
