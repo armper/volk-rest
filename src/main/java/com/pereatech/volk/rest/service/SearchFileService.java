@@ -1,8 +1,12 @@
 package com.pereatech.volk.rest.service;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 
+import org.springframework.core.io.Resource;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.CacheControl;
+import org.springframework.http.ContentDisposition;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.pereatech.volk.rest.model.SearchFile;
 import com.pereatech.volk.rest.repositories.SearchFileRepository;
 import com.pereatech.volk.rest.security.DocumentAccessService;
+import com.pereatech.volk.rest.service.DocumentPreviewService.DocumentPreview;
+import com.pereatech.volk.rest.service.DocumentPreviewService.PreviewResource;
 import com.pereatech.volk.rest.service.DocumentSearchService.SearchOptions;
 import com.pereatech.volk.rest.service.DocumentSearchService.SearchRequest;
 
@@ -36,11 +43,14 @@ public class SearchFileService {
 
 	private final DocumentSearchService documentSearchService;
 
+	private final DocumentPreviewService documentPreviewService;
+
 	public SearchFileService(SearchFileRepository searchFileRepository, DocumentAccessService documentAccessService,
-			DocumentSearchService documentSearchService) {
+			DocumentSearchService documentSearchService, DocumentPreviewService documentPreviewService) {
 		this.searchFileRepository = searchFileRepository;
 		this.documentAccessService = documentAccessService;
 		this.documentSearchService = documentSearchService;
+		this.documentPreviewService = documentPreviewService;
 	}
 
 	@GetMapping("/{id}")
@@ -85,6 +95,29 @@ public class SearchFileService {
 	@GetMapping("/search/options")
 	public Mono<SearchOptions> searchOptions() {
 		return documentSearchService.options();
+	}
+
+	@GetMapping("/{id}/preview")
+	public Mono<DocumentPreview> preview(@PathVariable String id) {
+		return documentPreviewService.preview(id);
+	}
+
+	@GetMapping("/{id}/content")
+	public Mono<ResponseEntity<Resource>> previewContent(@PathVariable String id) {
+		return documentPreviewService.content(id).map(this::inlineResponse);
+	}
+
+	private ResponseEntity<Resource> inlineResponse(PreviewResource preview) {
+		ContentDisposition disposition = ContentDisposition.inline()
+				.filename(preview.fileName(), StandardCharsets.UTF_8)
+				.build();
+		return ResponseEntity.ok()
+				.contentType(preview.mediaType())
+				.contentLength(preview.contentLength())
+				.cacheControl(CacheControl.noStore())
+				.header("Content-Disposition", disposition.toString())
+				.header("X-Content-Type-Options", "nosniff")
+				.body(preview.resource());
 	}
 
 	/**

@@ -1,10 +1,14 @@
 package com.pereatech.volk.rest;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -38,6 +42,9 @@ class RestTest {
 	private SearchUserRepository searchUserRepository;
 
 	private SearchFile searchFile;
+
+	@TempDir
+	Path tempDirectory;
 
 	private final Faker faker = new Faker();
 
@@ -148,6 +155,81 @@ class RestTest {
 		webTestClient.get().uri("/searchfile/findall").exchange()
 				.expectStatus().isOk()
 				.expectBodyList(SearchFile.class).hasSize(0);
+
+		webTestClient.get().uri("/searchfile/{id}/preview", id).exchange()
+				.expectStatus().isNotFound();
+
+		webTestClient.get().uri("/searchfile/{id}/content", id).exchange()
+				.expectStatus().isNotFound();
+	}
+
+	@Test
+	void previewReturnsExtractedTextForOfficeDocuments() {
+		searchFile.setExtension("docx");
+		searchFile.setContentType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+		searchFile.setTitle("Records handbook");
+		searchFile.setContent("First line\nSecond line");
+		String id = searchFileRepository.save(searchFile).block().getId();
+
+		webTestClient.get().uri("/searchfile/{id}/preview", id).exchange()
+				.expectStatus().isOk()
+				.expectBody()
+				.jsonPath("$.previewType").isEqualTo("TEXT")
+				.jsonPath("$.originalAvailable").isEqualTo(false)
+				.jsonPath("$.text").isEqualTo("First line\nSecond line")
+				.jsonPath("$.title").isEqualTo("Records handbook");
+	}
+
+	@Test
+	void previewStreamsAllowlistedFilesInsideTheirIndexedSource() throws Exception {
+		Path source = Files.createDirectory(tempDirectory.resolve("source"));
+		Path pdf = source.resolve("sample.pdf");
+		byte[] content = "%PDF-1.4 preview test".getBytes(StandardCharsets.UTF_8);
+		Files.write(pdf, content);
+
+		searchFile.setFileName(pdf.getFileName().toString());
+		searchFile.setPath(pdf.toString());
+		searchFile.setSourceRoot(source.toString());
+		searchFile.setExtension("pdf");
+		searchFile.setContentType(MediaType.APPLICATION_PDF_VALUE);
+		searchFile.setContent("Preview test text");
+		String id = searchFileRepository.save(searchFile).block().getId();
+
+		webTestClient.get().uri("/searchfile/{id}/preview", id).exchange()
+				.expectStatus().isOk()
+				.expectBody()
+				.jsonPath("$.previewType").isEqualTo("PDF")
+				.jsonPath("$.originalAvailable").isEqualTo(true);
+
+		webTestClient.get().uri("/searchfile/{id}/content", id).exchange()
+				.expectStatus().isOk()
+				.expectHeader().contentType(MediaType.APPLICATION_PDF)
+				.expectHeader().valueEquals("X-Content-Type-Options", "nosniff")
+				.expectBody().consumeWith(result -> org.assertj.core.api.Assertions
+						.assertThat(result.getResponseBody()).isEqualTo(content));
+	}
+
+	@Test
+	void previewDoesNotStreamFilesOutsideTheirIndexedSource() throws Exception {
+		Path source = Files.createDirectory(tempDirectory.resolve("source"));
+		Path outside = tempDirectory.resolve("outside.pdf");
+		Files.writeString(outside, "%PDF-1.4 outside");
+
+		searchFile.setFileName(outside.getFileName().toString());
+		searchFile.setPath(outside.toString());
+		searchFile.setSourceRoot(source.toString());
+		searchFile.setExtension("pdf");
+		searchFile.setContentType(MediaType.APPLICATION_PDF_VALUE);
+		String id = searchFileRepository.save(searchFile).block().getId();
+
+		webTestClient.get().uri("/searchfile/{id}/preview", id).exchange()
+				.expectStatus().isOk()
+				.expectBody()
+				.jsonPath("$.previewType").isEqualTo("UNAVAILABLE")
+				.jsonPath("$.originalAvailable").isEqualTo(false);
+
+		webTestClient.get().uri("/searchfile/{id}/content", id).exchange()
+				.expectStatus().isNotFound();
 	}
 
 	@Test
