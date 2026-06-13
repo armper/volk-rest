@@ -1,6 +1,8 @@
 package com.pereatech.volk.rest.service;
 
-import org.springframework.data.mongodb.core.query.TextCriteria;
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import com.pereatech.volk.rest.model.SearchFile;
 import com.pereatech.volk.rest.repositories.SearchFileRepository;
 import com.pereatech.volk.rest.security.DocumentAccessService;
+import com.pereatech.volk.rest.service.DocumentSearchService.SearchOptions;
+import com.pereatech.volk.rest.service.DocumentSearchService.SearchRequest;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
@@ -30,9 +34,13 @@ public class SearchFileService {
 
 	private final DocumentAccessService documentAccessService;
 
-	public SearchFileService(SearchFileRepository searchFileRepository, DocumentAccessService documentAccessService) {
+	private final DocumentSearchService documentSearchService;
+
+	public SearchFileService(SearchFileRepository searchFileRepository, DocumentAccessService documentAccessService,
+			DocumentSearchService documentSearchService) {
 		this.searchFileRepository = searchFileRepository;
 		this.documentAccessService = documentAccessService;
+		this.documentSearchService = documentSearchService;
 	}
 
 	@GetMapping("/{id}")
@@ -53,13 +61,30 @@ public class SearchFileService {
 	}
 
 	/**
-	 * Full-text search over file name, title, and extracted content.
+	 * Permission-aware text search, filtering, and sorting.
 	 */
 	@GetMapping("/search")
-	public Flux<SearchFile> search(@RequestParam("q") String query) {
-		log.debug("text search: {}", query);
-		return searchFileRepository.findAllBy(TextCriteria.forDefaultLanguage().matching(query))
-				.filter(documentAccessService::canRead);
+	public Flux<SearchFile> search(
+			@RequestParam(name = "q", defaultValue = "") String query,
+			@RequestParam(required = false) String extension,
+			@RequestParam(required = false) String owner,
+			@RequestParam(required = false) String sourceId,
+			@RequestParam(required = false) String folder,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate modifiedFrom,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate modifiedTo,
+			@RequestParam(required = false) Long minSize,
+			@RequestParam(required = false) Long maxSize,
+			@RequestParam(required = false) String author,
+			@RequestParam(required = false) String keywords,
+			@RequestParam(defaultValue = "relevance") String sort) {
+		log.debug("document search: {}", query);
+		return documentSearchService.search(new SearchRequest(query, extension, owner, sourceId, folder,
+				modifiedFrom, modifiedTo, minSize, maxSize, author, keywords, sort));
+	}
+
+	@GetMapping("/search/options")
+	public Mono<SearchOptions> searchOptions() {
+		return documentSearchService.options();
 	}
 
 	/**

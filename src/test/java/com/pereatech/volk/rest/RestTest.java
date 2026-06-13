@@ -149,4 +149,99 @@ class RestTest {
 				.expectStatus().isOk()
 				.expectBodyList(SearchFile.class).hasSize(0);
 	}
+
+	@Test
+	void searchFiltersAndSortsReadableDocuments() {
+		SearchFile olderPdf = copySearchFile("annual-policy.pdf", "/sources/policies/annual-policy.pdf");
+		olderPdf.setExtension("pdf");
+		olderPdf.setContentOwner("Records team");
+		olderPdf.setAuthor("Alex Writer");
+		olderPdf.setKeywords("retention compliance");
+		olderPdf.setSize(4_000L);
+		olderPdf.setLastModified(LocalDateTime.now().minusDays(5));
+
+		SearchFile newerPdf = copySearchFile("current-policy.pdf", "/sources/policies/current-policy.pdf");
+		newerPdf.setExtension("pdf");
+		newerPdf.setContentOwner("Records team");
+		newerPdf.setAuthor("Alex Writer");
+		newerPdf.setKeywords("retention compliance");
+		newerPdf.setSize(8_000L);
+		newerPdf.setLastModified(LocalDateTime.now());
+
+		SearchFile unrelated = copySearchFile("budget.xlsx", "/sources/finance/budget.xlsx");
+		unrelated.setExtension("xlsx");
+		unrelated.setContentOwner("Finance team");
+		unrelated.setSourceId("finance-source");
+		unrelated.setSourceName("Finance records");
+
+		searchFileRepository.saveAll(java.util.List.of(olderPdf, newerPdf, unrelated)).collectList().block();
+
+		webTestClient.get().uri(uriBuilder -> uriBuilder.path("/searchfile/search")
+				.queryParam("extension", "pdf")
+				.queryParam("owner", "Records team")
+				.queryParam("author", "Alex")
+				.queryParam("keywords", "retention")
+				.queryParam("folder", "policies")
+				.queryParam("minSize", 3_000)
+				.queryParam("sort", "newest")
+				.build()).exchange()
+				.expectStatus().isOk()
+				.expectBodyList(SearchFile.class)
+				.hasSize(2)
+				.value(files -> {
+					org.assertj.core.api.Assertions.assertThat(files.get(0).getFileName())
+							.isEqualTo("current-policy.pdf");
+					org.assertj.core.api.Assertions.assertThat(files.get(1).getFileName())
+							.isEqualTo("annual-policy.pdf");
+				});
+	}
+
+	@Test
+	void searchOptionsDoNotRevealRestrictedDocuments() {
+		SearchFile readable = copySearchFile("readable.pdf", "/sources/readable.pdf");
+		readable.setExtension("pdf");
+		readable.setContentOwner("Visible owner");
+
+		SearchFile restricted = copySearchFile("restricted.docx", "/restricted/restricted.docx");
+		restricted.setExtension("docx");
+		restricted.setContentOwner("Secret owner");
+		restricted.setIndexerUser("another-user");
+		restricted.setIndexerReadable(false);
+		restricted.setFileOwner("another-user");
+		restricted.setOthersReadable(false);
+
+		searchFileRepository.saveAll(java.util.List.of(readable, restricted)).collectList().block();
+
+		webTestClient.get().uri("/searchfile/search/options").exchange()
+				.expectStatus().isOk()
+				.expectBody()
+				.jsonPath("$.extensions.length()").isEqualTo(1)
+				.jsonPath("$.extensions[0]").isEqualTo("pdf")
+				.jsonPath("$.owners.length()").isEqualTo(1)
+				.jsonPath("$.owners[0]").isEqualTo("Visible owner")
+				.jsonPath("$.sources.length()").isEqualTo(1);
+	}
+
+	private SearchFile copySearchFile(String fileName, String path) {
+		SearchFile copy = new SearchFile();
+		copy.setFileName(fileName);
+		copy.setPath(path);
+		copy.setServer(searchFile.getServer());
+		copy.setCreatedDateTime(searchFile.getCreatedDateTime());
+		copy.setLastModified(searchFile.getLastModified());
+		copy.setAccessControlSource(searchFile.getAccessControlSource());
+		copy.setIndexerUser(searchFile.getIndexerUser());
+		copy.setIndexerReadable(searchFile.isIndexerReadable());
+		copy.setFileOwner(searchFile.getFileOwner());
+		copy.setOwnerReadable(searchFile.isOwnerReadable());
+		copy.setSourceId(searchFile.getSourceId());
+		copy.setSourceName(searchFile.getSourceName());
+		copy.setSourceType(searchFile.getSourceType());
+		copy.setSourceRoot(searchFile.getSourceRoot());
+		copy.setRelativePath(fileName);
+		copy.setContentOwner(searchFile.getContentOwner());
+		copy.setOwnershipBasis(searchFile.getOwnershipBasis());
+		copy.setDepartment(searchFile.getDepartment());
+		return copy;
+	}
 }
